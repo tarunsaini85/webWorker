@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+</head>
+
+<body>
+<button type="button" id="wwId">XXX</button>
+<script type="text/javascript">
+//var blob = new Blob(["onmessage = function(e) { postMessage(e.data); }"]);
+//var blobURL = window.URL.createObjectURL(blob);
+//var worker = new Worker(blobURL);
+
+var worker = new Worker('ww.js');
+worker.addEventListener('message',function(e){
+  alert(e.data);
+},false);
+document.getElementById('wwId').onclick = function(){
+	var p = window.prompt('Enter Your Name','');
+	if (p!='' && p!=null){
+		worker.postMessage(p);
+	}
+}
+</script>
+</body>
+</html>
